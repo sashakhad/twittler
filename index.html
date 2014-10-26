@@ -23,7 +23,21 @@
         function prependTweets(){
           //Variables for Users, Messages, and Dates //
           var user = tweet.user
-          var $user = $('<div id = "users"></div>');
+          switch(user){
+            case 'shawndrost':
+              $user = $('<a  href = "1" id = "users"></a>');
+              break;
+            case 'sharksforcheap':
+              $user = $('<a  href = "2" id = "users"></a>');
+              break;
+            case 'mracus':
+              var $user = $('<a  href = "3" id = "users"></a>');
+              break;  
+            case 'douglascalhoun':
+              var $user = $('<a  href = "4" id = "users"></a>');
+              break;                
+          }
+
           $user.text(user);
           var message = tweet.message
           var $message = $('<div class = "messages"></div>');
@@ -34,7 +48,13 @@
 
           index = streams.home.length - 1;
           tweet = streams.home[index]
-          $body.prepend('<br>' + '@' + $user.html() + ':' + $message.html() + '<br>' + $created_at.html());
+          var $tweet = $('<div></div>');
+          $tweet.text('@' + user + ': ' + message + created_at);
+          //$tweet.appendTo($body);
+          //console.log(streams.users);
+          $body.prepend($user);
+          $body.prepend('<br>')
+          //body.prepend('<br>' + '@' + $user.html() + ': ' + $message.html() + '<br>' + $created_at.html());
         }
         function timedRefresh(){
           setInterval(prependTweets, 2000)
