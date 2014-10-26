@@ -20,6 +20,18 @@
           index -= 1;
         }
 
+        function prependTweets(){
+          var user = tweet.user
+          var $user = $('<div id = "users"></div>');
+          $user.text(user);
+          var message = tweet.message
+          var $message = $('<div class = "messages"></div>');
+          $message.text(message);
+          var created_at = tweet.created_at
+          var $created_at = $('<div class = "dates"></div>');
+          $created_at.text(created_at);
+        }
+
       });
 
     </script>
