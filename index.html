@@ -21,6 +21,7 @@
         }
 
         function prependTweets(){
+          //Variables for Users, Messages, and Dates //
           var user = tweet.user
           var $user = $('<div id = "users"></div>');
           $user.text(user);
@@ -30,8 +31,15 @@
           var created_at = tweet.created_at
           var $created_at = $('<div class = "dates"></div>');
           $created_at.text(created_at);
-        }
 
+          index = streams.home.length - 1;
+          tweet = streams.home[index]
+          $body.prepend('<br>' + '@' + $user.html() + ':' + $message.html() + '<br>' + $created_at.html());
+        }
+        function timedRefresh(){
+          setInterval(prependTweets, 2000)
+        }
+        timedRefresh();
       });
 
     </script>
