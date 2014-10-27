@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="style.css">
     <script src="jquery.js"></script>
+    <script src="moment.js"></script>
     <script src="data_generator.js"></script>
     <!--<script src="script.js"></script> -->
 
@@ -25,7 +27,7 @@
           index -= 1;
         }
 
-        var userNames = {
+        var displayNames = {
           shawn: "ShawnyyBoyyy",
           sharks: "SharkzzzFoCheap",
           marcus: "Marcus Raucus",
@@ -33,29 +35,30 @@
         };
         var name = "";
         var image = "";
+        var time = moment().fromNow();
 
         function prependTweets(){
           
           var user = tweet.user
           switch(user){
             case 'shawndrost':
-              $user = $('<a  href = "1" class = "shawn"></a>');
-              name = userNames.shawn;
+              name = displayNames.shawn;
+              $user = $('<div><a  href = "1" class = "shawn">' + name + ' + </a></div>');
               image = '<img src = shawn.jpg>'
               break;
             case 'sharksforcheap':
-              $user = $('<button  href = # class = "sharks"></button>');
-              name = userNames.sharks;
+              $user = $('<button  href = # class = "displayNames"></button>');
+              name = displayNames.sharks
               image = '<img src = shark.jpg>'
               break;
             case 'mracus':
-              $user = $('<a  href = "3" class = "marcus"></a>');
-              name = userNames.marcus;
+              $user = $('<div class = "displayNames"><a  href = "3"></a></div');
+              name =  displayNames.marcus 
               image = '<img src = marcus.jpg>'
               break;  
             case 'douglascalhoun':
-              $user = $('<a  href = "4" class = "doug"></a>');
-              name = userNames.doug;
+              $user = $('<a  href = "4" class = "displayNames"></a>');
+              name =  displayNames.doug 
               image = '<img src = beard.jpg>'
               break;                
           }
@@ -74,7 +77,14 @@
           $tweet.text('@' + user + ': ' + message + created_at);
           //$tweet.appendTo($body);
           //console.log(streams.users);
-          $body.prepend(image, name, ' ', $user, $message, '<br>');
+          $body.prepend(  '<div>' + image + 
+                           '&nbsp' +
+                          '<p class = "displayNames">' + name + '&nbsp' + 
+                          '<p class = "userNames">' + '@' + user + '&nbsp' + '</p>' +
+                          '<p class = "userNames"> · </p>' + '  ' + 
+                          '<p class = "userNames">' + time + '</p>' + 
+                          '<p class = "messages">' + message + '</p>' +
+                          '</div>', '<br/>');
 
 
           //body.prepend('<br>' + '@' + $user.html() + ': ' + $message.html() + '<br>' + $created_at.html());

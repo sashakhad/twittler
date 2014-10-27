@@ -1,0 +1,52 @@
+p{
+	display: inline-block;
+	vertical-align: top;
+	margin: 0;
+}
+
+.displayNames{
+	display: inline-block;
+	font-size: 14px;
+	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+	font-weight: bold;
+	vertical-align: top;
+}
+
+.userNames{
+	font-weight: normal;
+	font-size: 13px;
+	color: #8899a6;
+	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+	margin-top: 2px;
+}
+
+.dot{
+	margin-top: 2px;
+}
+
+img{
+	height:48px;
+	width: 48px;
+	border-radius: 15px;
+	border: solid;
+	border-color: red;
+}
+
+button{
+	color: red;
+	height: 30px;
+}
+.shawn{
+	font-style: helvetica;
+	font-size: 30px;
+}
+
+.messages{
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.dates{
+	display: inline-block;
+	vertical-align: top
+}
