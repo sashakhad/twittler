@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="style.css">
     <script src="jquery.js"></script>
+    <script src="timeago.js"></script>
     <script src="moment.js"></script>
     <script src="data_generator.js"></script>
     <!--<script src="script.js"></script> -->
@@ -12,18 +13,33 @@
   <body>
 
 
+
 <script type="text/javascript">
+
+var datetime = null,
+        date = null;
+
+var update = function () {
+    date = moment(new Date())
+    datetime = (date.fromNow());
+};
+
  var result = [];
       $(document).ready(function(){
         var $body = $('body');
         $body.html('');
+
+
+    datetime = $('#datetime');
+    update();
+    setInterval(update, 1000);
 
         var index = streams.home.length - 1;
         while(index >= 0){
           var tweet = streams.home[index];
           var $tweet = $('<div></div>');
           $tweet.text('@' + tweet.user + ': ' + tweet.message);
-          $tweet.appendTo($body);
+          //$tweet.appendTo($body);
           index -= 1;
         }
 
@@ -77,22 +93,23 @@
           $tweet.text('@' + user + ': ' + message + created_at);
           //$tweet.appendTo($body);
           //console.log(streams.users);
-          $body.prepend(  '<div>' + image + 
+          $body.prepend(  '<div class "group">' + image + 
                            '&nbsp' +
                           '<p class = "displayNames">' + name + '&nbsp' + 
                           '<p class = "userNames">' + '@' + user + '&nbsp' + '</p>' +
                           '<p class = "userNames"> · </p>' + '  ' + 
-                          '<p class = "userNames">' + time + '</p>' + 
+                          '<p class = "userNames">' + datetime + '</p>' + '<br/>' + '&nbsp' +
                           '<p class = "messages">' + message + '</p>' +
-                          '</div>', '<br/>');
+                          '</div>');
 
-
-          //body.prepend('<br>' + '@' + $user.html() + ': ' + $message.html() + '<br>' + $created_at.html());
         }
         function timedRefresh(){
-          setInterval(prependTweets, 2000)
+          setInterval(prependTweets, 5000)
         }
         timedRefresh();
+
+
+
 
       });
 

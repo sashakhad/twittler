@@ -1,8 +1,27 @@
+
+div {
+	height: 60px;
+	width: 564px;
+	position: center;
+	display: block;
+	border: solid 1px; 
+	border-color: #e1e8ed;
+	border-radius: 5px;
+}
+
 p{
 	display: inline-block;
 	vertical-align: top;
 	margin: 0;
 }
+
+.container{
+	background-color: black;
+	height: 100%;
+	width: 100%;
+}
+
+
 
 .displayNames{
 	display: inline-block;
@@ -10,6 +29,7 @@ p{
 	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
 	font-weight: bold;
 	vertical-align: top;
+	margin-top: 4px;
 }
 
 .userNames{
@@ -17,7 +37,7 @@ p{
 	font-size: 13px;
 	color: #8899a6;
 	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
-	margin-top: 2px;
+	margin-top: 5px;
 }
 
 .dot{
@@ -28,9 +48,15 @@ img{
 	height:48px;
 	width: 48px;
 	border-radius: 15px;
-	border: solid;
-	border-color: red;
+	display: inline-block;
+	overflow: auto;
+	float: left;
+	margin-left: 10px;
+	margin-top: 5px;
+
+
 }
+
 
 button{
 	color: red;
@@ -44,6 +70,9 @@ button{
 .messages{
 	display: inline-block;
 	vertical-align: middle;
+	font-size: 14px;
+	color: #292f33;
+	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif
 }
 
 .dates{
