@@ -1,12 +1,17 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <link rel="stylesheet" type="text/css" href="style.css">
     <script src="jquery.js"></script>
     <script src="data_generator.js"></script>
+    <!--<script src="script.js"></script> -->
+
   </head>
   <body>
-    <script>
 
+
+<script type="text/javascript">
+ var result = [];
       $(document).ready(function(){
         var $body = $('body');
         $body.html('');
@@ -20,25 +25,42 @@
           index -= 1;
         }
 
+        var userNames = {
+          shawn: "ShawnyyBoyyy",
+          sharks: "SharkzzzFoCheap",
+          marcus: "Marcus Raucus",
+          doug: "Douggy Boyy"
+        };
+        var name = "";
+        var image = "";
+
         function prependTweets(){
-          //Variables for Users, Messages, and Dates //
+          
           var user = tweet.user
           switch(user){
             case 'shawndrost':
-              $user = $('<a  href = "1" id = "users"></a>');
+              $user = $('<a  href = "1" class = "shawn"></a>');
+              name = userNames.shawn;
+              image = '<img src = shawn.jpg>'
               break;
             case 'sharksforcheap':
-              $user = $('<a  href = "sharks.html" id = "users"></a>');
+              $user = $('<button  href = # class = "sharks"></button>');
+              name = userNames.sharks;
+              image = '<img src = shark.jpg>'
               break;
             case 'mracus':
-              var $user = $('<a  href = "3" id = "users"></a>');
+              $user = $('<a  href = "3" class = "marcus"></a>');
+              name = userNames.marcus;
+              image = '<img src = marcus.jpg>'
               break;  
             case 'douglascalhoun':
-              var $user = $('<a  href = "4" id = "users"></a>');
+              $user = $('<a  href = "4" class = "doug"></a>');
+              name = userNames.doug;
+              image = '<img src = beard.jpg>'
               break;                
           }
-
-          $user.text(user);
+          //Variables for Users, Messages, and Dates //
+          $user.text('@' + user);
           var message = tweet.message
           var $message = $('<div class = "messages"></div>');
           $message.text(message);
@@ -52,16 +74,20 @@
           $tweet.text('@' + user + ': ' + message + created_at);
           //$tweet.appendTo($body);
           //console.log(streams.users);
-          $body.prepend($user);
-          $body.prepend('<br>')
+          $body.prepend(image, name, ' ', $user, $message, '<br>');
+
+
           //body.prepend('<br>' + '@' + $user.html() + ': ' + $message.html() + '<br>' + $created_at.html());
         }
         function timedRefresh(){
           setInterval(prependTweets, 2000)
         }
         timedRefresh();
+
       });
 
-    </script>
+
+</script>
+
   </body>
 </html>
