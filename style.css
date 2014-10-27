@@ -1,5 +1,15 @@
+html { 
+  background: url(background.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+
 
 div {
+	background-color: white;
 	height: 60px;
 	width: 564px;
 	position: center;
@@ -7,6 +17,8 @@ div {
 	border: solid 1px; 
 	border-color: #e1e8ed;
 	border-radius: 5px;
+	margin-left: auto ;
+  	margin-right: auto ;
 }
 
 p{
@@ -15,13 +27,21 @@ p{
 	margin: 0;
 }
 
+a{
+	text-decoration: inherit;
+	color: inherit;
+}
+
+a:hover{
+	color: #0084B4;
+	text-decoration: underline;
+}
+
 .container{
 	background-color: black;
 	height: 100%;
 	width: 100%;
 }
-
-
 
 .displayNames{
 	display: inline-block;
