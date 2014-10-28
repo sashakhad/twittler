@@ -29,27 +29,65 @@ $(document).ready(function(){
     datetime = $('#datetime');
     update();
     setInterval(update, 1000);
+ 
+  var displayNames = {
+    shawn: "Shawn Drost",
+    sharks: "Sharks FoR Cheap",
+    marcus: "Marcus Raucus",
+    doug: "Douglas Calhoun"
+    };
 
+  var name = "";
+  var image = "";
+  var time = moment().fromNow();  
+
+  function initialTweets(){
         var index = streams.home.length - 1;
         while(index >= 0){
           var tweet = streams.home[index];
+          var message = tweet.message
+          var user = tweet.user
           var $tweet = $('<div></div>');
           $tweet.text('@' + tweet.user + ': ' + tweet.message);
-          $tweet.appendTo($body);
+          var user = tweet.user
+
+          switch(user){
+            case 'shawndrost':
+              user = "shawnyyboyyy"
+              name = '<a href = "sharks.html" class = "displayNames">' + displayNames.shawn + '</a>'
+              image = '<img src = shawn.jpg>'
+              break;
+            case 'sharksforcheap':
+              name = '<a href = "sharks.html" class = "displayNames">' + displayNames.sharks + '</a>'
+              user = "SharkzzzFoCheap"
+              image = '<img src = shark.jpg>'
+              break;
+            case 'mracus':
+              name =  '<a href = "sharks.html" class = "displayNames">' + displayNames.marcus + '</a>'
+              user = "MarcusTheRaucus",
+              image = '<img src = marcus.jpg>'
+              break;  
+            case 'douglascalhoun':
+              name =  '<a href = "sharks.html" class = "displayNames">' + displayNames.doug + '</a>'
+              user = "beardmau5"
+              image = '<img src = beard.jpg>'
+              break;                
+          }
+
+          $body.prepend(  '<div class "group">' + image + 
+                           '&nbsp' +
+                          '<a href = "#" class = "displayNames">' + name + '&nbsp' + '</a>' +
+                          '<p class = "userNames">' + '@' + user + '&nbsp' + '</p>' +
+                          '<p class = "userNames"> · </p>' + '  ' + 
+                          '<p class = "userNames">' + datetime + '</p>' + '<br/>' + '&nbsp' +
+                          '<p class = "messages">' + message + '</p>' +
+                          '</div>');
           index -= 1;
         }
+    };
+  initialTweets();
 
-        var displayNames = {
-          shawn: "Shawn Drost",
-          sharks: "Sharks FoR Cheap",
-          marcus: "Marcus Raucus",
-          doug: "Douglas Calhoun"
-        };
-        var name = "";
-        var image = "";
-        var time = moment().fromNow();
-
-        function prependTweets(){
+  function prependTweets(){
           
           var user = tweet.user
           switch(user){
