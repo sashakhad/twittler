@@ -16,33 +16,18 @@ $(document).ready(function(){
   var $body = $('body');
   $body.html('');
  
-  var displayNames = {
-    shawn: "Shawn Drost",
-    sharks: "Sharks FoR Cheap",
-    marcus: "Marcus Raucus",
-    doug: "Douglas Calhoun"
-    };
+var index = "";
+var tweet = "";
 
-  var name = "";
-  var image = "";
-  var time = "";
-  var updateTime = function(){
-    time = moment().calendar();  
-  }
-  updateTime();
-  setInterval(updateTime, 2000);
+function updateTweet(){
+  index = streams.home.length - 1;
+  tweet = streams.home[index];
+}
+updateTweet();
 
-  function initialTweets(){
-        var index = streams.home.length - 1;
-        while(index >= 0){
-          var tweet = streams.home[index];
-          var message = tweet.message
-          var user = tweet.user
-          var $tweet = $('<div></div>');
-          $tweet.text('@' + tweet.user + ': ' + tweet.message);
-          var user = tweet.user
 
-          switch(user){
+function chooseUser(user){
+  switch(user){
             case 'shawndrost':
               user = "shawnyyboyyy"
               name = '<a href = "shawn.html" class = "displayNames">' + displayNames.shawn + '</a>'
@@ -64,6 +49,36 @@ $(document).ready(function(){
               image = '<img src = beard.jpg>'
               break;                
           }
+}
+
+  var displayNames = {
+    shawn: "Shawn Drost",
+    sharks: "Sharks FoR Cheap",
+    marcus: "Marcus Raucus",
+    doug: "Douglas Calhoun"
+    };
+
+  var name = "";
+  var image = "";
+  var time = "";
+  var updateTime = function(){
+    time = moment().calendar();  
+  }
+  updateTime();
+  setInterval(updateTime, 2000);
+
+  function initialTweets(){
+
+
+        while(index >= 0){
+          var tweet = streams.home[index];
+          var message = tweet.message
+          var user = tweet.user
+          var $tweet = $('<div></div>');
+          $tweet.text('@' + tweet.user + ': ' + tweet.message);
+          var user = tweet.user
+
+        chooseUser(user);
 
           $body.prepend(  '<div class "group">' + image + 
                            '&nbsp' +
@@ -79,35 +94,13 @@ $(document).ready(function(){
   initialTweets();
 
   function prependTweets(){
-          var index = streams.home.length - 1;
-          var tweet = streams.home[index];
+
           var message = tweet.message
           var user = tweet.user
           var $tweet = $('<div></div>');
           $tweet.text('@' + tweet.user + ': ' + tweet.message);
           var user = tweet.user
-          switch(user){
-            case 'shawndrost':
-              user = "shawnyyboyyy"
-              name = '<a href = "shawn.html" class = "displayNames">' + displayNames.shawn + '</a>'
-              image = '<img src = shawn.jpg>'
-              break;
-            case 'sharksforcheap':
-              name = '<a href = "sharks.html" class = "displayNames">' + displayNames.sharks + '</a>'
-              user = "SharkzzzFoCheap"
-              image = '<img src = shark.jpg>'
-              break;
-            case 'mracus':
-              name =  '<a href = "marcus.html" class = "displayNames">' + displayNames.marcus + '</a>'
-              user = "MarcusTheRaucus",
-              image = '<img src = marcus.jpg>'
-              break;  
-            case 'douglascalhoun':
-              name =  '<a href = "douglascalhoun.html" class = "displayNames">' + displayNames.doug + '</a>'
-              user = "beardmau5"
-              image = '<img src = beard.jpg>'
-              break;                
-          }
+          chooseUser(user);
           //Variables for Users, Messages, and Dates //
           //$user.text('@' + user);
           var message = tweet.message
@@ -144,6 +137,7 @@ $(document).ready(function(){
 </script>
 </head>
 <body>
+
 <div></div>
 
 
