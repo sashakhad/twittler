@@ -14,10 +14,9 @@
 var datetime = null,
         date = null;
 
-var update = function () {
-    date = moment(new Date())
-    datetime = (date.fromNow());
-};
+
+    date = moment().calendar();
+
 
  var result = [];
 
@@ -25,11 +24,6 @@ var update = function () {
 $(document).ready(function(){
   var $body = $('body');
   $body.html('');
-
-
-    datetime = $('#datetime');
-    update();
-    setInterval(update, 1000);
 
   var displayNames = {
     shawn: "Shawn Drost",
@@ -40,7 +34,13 @@ $(document).ready(function(){
 
   var name = "";
   var image = "";
-  var time = moment().fromNow();  
+  var time = "";
+  var updateTime = function(){
+    time = moment().calendar();  
+  }
+  updateTime();
+  setInterval(updateTime, 2000);
+
 
   function initialTweets(){
         var index = streams.home.length - 1;
@@ -81,7 +81,7 @@ $(document).ready(function(){
                           '<a href = "#" class = "displayNames">' + name + '&nbsp' + '</a>' +
                           '<p class = "userNames">' + '@' + user + '&nbsp' + '</p>' +
                           '<p class = "userNames"> · </p>' + '  ' + 
-                          '<p class = "userNames">' + datetime + '</p>' + '<br/>' + '&nbsp' +
+                          '<p class = "userNames">' + time + '</p>' + '<br/>' + '&nbsp' +
                           '<p class = "messages">' + message + '</p>' +
                           '</div>');
           }
@@ -90,10 +90,12 @@ $(document).ready(function(){
     };
   initialTweets();
 
-
-
         function prependTweets(){
-          
+          var tweet = streams.home[index];
+          var message = tweet.message
+          var user = tweet.user
+          var $tweet = $('<div></div>');
+          $tweet.text('@' + tweet.user + ': ' + tweet.message);
           var user = tweet.user
           switch(user){
             case 'shawndrost':
@@ -137,7 +139,7 @@ $(document).ready(function(){
                           '<a href = "#" class = "displayNames">' + name + '&nbsp' + '</a>' +
                           '<p class = "userNames">' + '@' + user + '&nbsp' + '</p>' +
                           '<p class = "userNames"> · </p>' + '  ' + 
-                          '<p class = "userNames">' + datetime + '</p>' + '<br/>' + '&nbsp' +
+                          '<p class = "userNames">' + time + '</p>' + '<br/>' + '&nbsp' +
                           '<p class = "messages">' + message + '</p>' +
                           '</div>');
 
