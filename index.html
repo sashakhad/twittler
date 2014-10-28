@@ -19,9 +19,11 @@ var update = function () {
 };
 
  var result = [];
-      $(document).ready(function(){
-        var $body = $('body');
-        $body.html('');
+
+
+$(document).ready(function(){
+  var $body = $('body');
+  $body.html('');
 
 
     datetime = $('#datetime');
@@ -33,7 +35,7 @@ var update = function () {
           var tweet = streams.home[index];
           var $tweet = $('<div></div>');
           $tweet.text('@' + tweet.user + ': ' + tweet.message);
-          //$tweet.appendTo($body);
+          $tweet.appendTo($body);
           index -= 1;
         }
 
@@ -52,33 +54,28 @@ var update = function () {
           var user = tweet.user
           switch(user){
             case 'shawndrost':
-              $user = $('<div><a  href = "1" class = "shawn">' + name + ' + </a></div>');
               user = "shawnyyboyyy"
-              name = displayNames.shawn;
-             
+              name = '<a href = "sharks.html" class = "displayNames">' + displayNames.shawn + '</a>'
               image = '<img src = shawn.jpg>'
               break;
             case 'sharksforcheap':
-              $user = $('<button  href = # class = "displayNames"></button>');
-              name = displayNames.sharks
+              name = '<a href = "sharks.html" class = "displayNames">' + displayNames.sharks + '</a>'
               user = "SharkzzzFoCheap"
               image = '<img src = shark.jpg>'
               break;
             case 'mracus':
-              $user = $('<div class = "displayNames"><a  href = "3"></a></div');
-              name =  displayNames.marcus 
+              name =  '<a href = "sharks.html" class = "displayNames">' + displayNames.marcus + '</a>'
               user = "MarcusTheRaucus",
               image = '<img src = marcus.jpg>'
               break;  
             case 'douglascalhoun':
-              $user = $('<a  href = "4" class = "displayNames"></a>');
-              name =  displayNames.doug 
+              name =  '<a href = "sharks.html" class = "displayNames">' + displayNames.doug + '</a>'
               user = "beardmau5"
               image = '<img src = beard.jpg>'
               break;                
           }
           //Variables for Users, Messages, and Dates //
-          $user.text('@' + user);
+          //$user.text('@' + user);
           var message = tweet.message
           var $message = $('<div class = "messages"></div>');
           $message.text(message);
