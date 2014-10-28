@@ -1,21 +1,30 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Twittler</title> 
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="style.css">
     <script src="jquery.js"></script>
     <script src="timeago.js"></script>
     <script src="moment.js"></script>
-    <script src="data_generator.js"></script>
-    <!--<script src="script.js"></script> -->
-<script type="text/javascript">
+    <script src="data_generator.js"></script> 
+  </head>
+  <body>    
+
+    <script>
+var datetime = null,
+        date = null;
+
+
+    date = moment().calendar();
+
+
+ var result = [];
 
 
 $(document).ready(function(){
   var $body = $('body');
   $body.html('');
- 
+
   var displayNames = {
     shawn: "Shawn Drost",
     sharks: "Sharks FoR Cheap",
@@ -32,6 +41,7 @@ $(document).ready(function(){
   updateTime();
   setInterval(updateTime, 2000);
 
+
   function initialTweets(){
         var index = streams.home.length - 1;
         while(index >= 0){
@@ -45,7 +55,7 @@ $(document).ready(function(){
           switch(user){
             case 'shawndrost':
               user = "shawnyyboyyy"
-              name = '<a href = "shawn.html" class = "displayNames">' + displayNames.shawn + '</a>'
+              name = '<a href = "sharks.html" class = "displayNames">' + displayNames.shawn + '</a>'
               image = '<img src = shawn.jpg>'
               break;
             case 'sharksforcheap':
@@ -54,17 +64,18 @@ $(document).ready(function(){
               image = '<img src = shark.jpg>'
               break;
             case 'mracus':
-              name =  '<a href = "marcus.html" class = "displayNames">' + displayNames.marcus + '</a>'
+              name =  '<a href = "sharks.html" class = "displayNames">' + displayNames.marcus + '</a>'
               user = "MarcusTheRaucus",
               image = '<img src = marcus.jpg>'
               break;  
             case 'douglascalhoun':
-              name =  '<a href = "doug.html" class = "displayNames">' + displayNames.doug + '</a>'
+              name =  '<a href = "sharks.html" class = "displayNames">' + displayNames.doug + '</a>'
               user = "beardmau5"
               image = '<img src = beard.jpg>'
               break;                
           }
 
+          if(tweet.user == 'mracus'){
           $body.prepend(  '<div class "group">' + image + 
                            '&nbsp' +
                           '<a href = "#" class = "displayNames">' + name + '&nbsp' + '</a>' +
@@ -73,13 +84,13 @@ $(document).ready(function(){
                           '<p class = "userNames">' + time + '</p>' + '<br/>' + '&nbsp' +
                           '<p class = "messages">' + message + '</p>' +
                           '</div>');
+          }
           index -= 1;
         }
     };
   initialTweets();
 
-  function prependTweets(){
-          var index = streams.home.length - 1;
+        function prependTweets(){
           var tweet = streams.home[index];
           var message = tweet.message
           var user = tweet.user
@@ -89,7 +100,7 @@ $(document).ready(function(){
           switch(user){
             case 'shawndrost':
               user = "shawnyyboyyy"
-              name = '<a href = "shawn.html" class = "displayNames">' + displayNames.shawn + '</a>'
+              name = '<a href = "sharks.html" class = "displayNames">' + displayNames.shawn + '</a>'
               image = '<img src = shawn.jpg>'
               break;
             case 'sharksforcheap':
@@ -98,12 +109,12 @@ $(document).ready(function(){
               image = '<img src = shark.jpg>'
               break;
             case 'mracus':
-              name =  '<a href = "marcus.html" class = "displayNames">' + displayNames.marcus + '</a>'
+              name =  '<a href = "sharks.html" class = "displayNames">' + displayNames.marcus + '</a>'
               user = "MarcusTheRaucus",
               image = '<img src = marcus.jpg>'
               break;  
             case 'douglascalhoun':
-              name =  '<a href = "douglascalhoun.html" class = "displayNames">' + displayNames.doug + '</a>'
+              name =  '<a href = "sharks.html" class = "displayNames">' + displayNames.doug + '</a>'
               user = "beardmau5"
               image = '<img src = beard.jpg>'
               break;                
@@ -133,20 +144,18 @@ $(document).ready(function(){
                           '</div>');
 
         }
+ 
         function timedRefresh(){
-          setInterval(prependTweets, 5000)
+          setInterval(function(){
+          index = streams.home.length - 1;
+          tweet = streams.home[index]
+          if(tweet.user == 'mracus'){prependTweets();}}, 2000)
         }
+
         timedRefresh();
 
       });
 
-
-</script>
-</head>
-<body>
-<div></div>
-
-
-
-  </body>
+    </script>
+    </body>
 </html>
