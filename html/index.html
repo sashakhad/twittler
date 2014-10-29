@@ -26,7 +26,8 @@
       shawn: "Shawn Drost",
       sharks: "Sharks FoR Cheap",
       marcus: "Marcus Raucus",
-      doug: "Douglas Calhoun"
+      doug: "Douglas Calhoun",
+      visitor: "Bro",
     };
 
     $(document).ready(function(){
@@ -55,10 +56,15 @@
           userName = "beardmau5"
           image = '<img src = ../images/beard.jpg>'
           break;                
+        case 'visitor':
+          name =  '<a href = "bro.html" class = "displayNames">' + displayNames.visitor + '</a>'
+          userName = "brodiddles"
+          image = '<img src = ../images/ponybro.jpg>'
+          break;     
         }  
       }
 
-      function prepender(message){
+      function displayTweets(message){
         $body.prepend('<div class "group">' + image + 
                       '&nbsp' +
                       '<a href = "#" class = "displayNames">' + name + '&nbsp' + '</a>' +
@@ -83,7 +89,7 @@
               message = tweet.message
               user = tweet.user
               chooseUser(user);
-              prepender(message);
+              displayTweets(message);
               index -= 1;
             }
         };
@@ -95,8 +101,17 @@
               message = tweet.message
               user = tweet.user
               chooseUser(user);
-              prepender(message);
+              displayTweets(message);
             }
+
+      function visitorTweets(){
+        index = streams.users.visitor.length - 1;
+        user = 'visitor'
+        message = streams.users.visitor[index];
+        chooseUser(user);
+        displayTweets(message);
+      }
+      setInterval(visitorTweets, 3000);
 
       function updateTweets(){
         setInterval(prependTweets, 5000)
