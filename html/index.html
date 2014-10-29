@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Twittler</title> 
+    <meta charset="UTF-8">
+    <link rel="icon" href="../images/favicon.ico" />
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
+    <script src="../js/jquery.js"></script>
+    <script src="../js/moment.js"></script>
+    <script src="../js/data_generator.js"></script>
+    <!--<script src="../js/script.js"></script> Use this if you want to move script to extrernal js file-->
+
+  <script>
+
+    //Global variable declarations
+    var name = "";
+    var image = "";
+    var time = "";
+    var image = "";
+    var user = "";
+    var message = "";
+    var index = "";
+    var tweet = "";
+    var sign = "";
+    var displayNames = {
+      shawn: "Shawn Drost",
+      sharks: "Sharks FoR Cheap",
+      marcus: "Marcus Raucus",
+      doug: "Douglas Calhoun"
+    };
+
+    $(document).ready(function(){
+      var $body = $('body');
+      $body.html('');
+
+      function chooseUser(user){
+      switch(user){
+        case 'shawndrost':
+          name = '<a href = "shawn.html" class = "displayNames">' + displayNames.shawn + '</a>'
+          userName = "shawnyyboyyy"
+          image = '<img src = ../images/shawn.jpg>'
+          break;
+        case 'sharksforcheap':
+          name = '<a href = "sharks.html" class = "displayNames">' + displayNames.sharks + '</a>'
+          userName = "SharkzzzFoCheap"
+          image = '<img src = ../images/shark.jpg>'
+          break;
+        case 'mracus':
+          name =  '<a href = "marcus.html" class = "displayNames">' + displayNames.marcus + '</a>'
+          userName = "MarcusTheRaucus",
+          image = '<img src = ../images/marcus.jpg>'
+          break;  
+        case 'douglascalhoun':
+          name =  '<a href = "douglascalhoun.html" class = "displayNames">' + displayNames.doug + '</a>'
+          userName = "beardmau5"
+          image = '<img src = ../images/beard.jpg>'
+          break;                
+        }  
+      }
+
+      function prepender(message){
+        $body.prepend('<div class "group">' + image + 
+                      '&nbsp' +
+                      '<a href = "#" class = "displayNames">' + name + '&nbsp' + '</a>' +
+                      '<p class = "userNames">' + '@' + userName + '&nbsp' + '</p>' +
+                      '<p class = "userNames"> · </p>' + '  ' + 
+                      '<p class = "userNames">' + time + '</p>' + '<br/>' + '&nbsp' +
+                      '<p class = "messages">' + message + '</p>' +
+                      '</div>');
+
+      };
+
+      function updateTime(){
+        time = moment().calendar();  
+        setInterval(updateTime, 2000);
+      }
+      updateTime();
+
+      function initialTweets(){
+            index = streams.home.length - 1;
+            while(index >= 0){
+              tweet = streams.home[index];
+              message = tweet.message
+              user = tweet.user
+              chooseUser(user);
+              prepender(message);
+              index -= 1;
+            }
+        };
+      initialTweets();
+
+      function prependTweets(){
+              index = streams.home.length - 1;
+              tweet = streams.home[index];
+              message = tweet.message
+              user = tweet.user
+              chooseUser(user);
+              prepender(message);
+            }
+
+      function updateTweets(){
+        setInterval(prependTweets, 5000)
+        }
+      updateTweets();
+
+    });
+
+  </script>
+  
+  </head>
+  
+  <body>
+    <!--Insert divs and stuff hereeee, but be sure to delete $body.html('') and figure out why blank div displays-->
+
+
+
+  </body>
+</html>
