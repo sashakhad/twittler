@@ -22,6 +22,7 @@
     var index = "";
     var tweet = "";
     var sign = "";
+    var input = "";
     var displayNames = {
       shawn: "Shawn Drost",
       sharks: "Sharks FoR Cheap",
@@ -32,7 +33,7 @@
 
     $(document).ready(function(){
       var $body = $('body');
-      $body.html('');
+
 
       function chooseUser(user){
       switch(user){
@@ -107,11 +108,17 @@
       function visitorTweets(){
         index = streams.users.visitor.length - 1;
         user = 'visitor'
-        message = streams.users.visitor[index];
+        message = streams.users.visitor[index].message;
         chooseUser(user);
         displayTweets(message);
       }
-      setInterval(visitorTweets, 3000);
+      
+      function sendVisitorTweet(){
+        input = $('.draft').val();
+        writeTweet(input);
+        visitorTweets();
+      }
+      $(".send").click(sendVisitorTweet);
 
       function updateTweets(){
         setInterval(prependTweets, 5000)
@@ -120,6 +127,7 @@
 
     });
 
+
   </script>
   
   </head>
@@ -127,7 +135,7 @@
   <body>
     <!--Insert divs and stuff hereeee, but be sure to delete $body.html('') and figure out why blank div displays-->
 
-
+    <input class="draft" type="text"/> <button type = "submit" class="send">Send</button>
 
   </body>
 </html>
