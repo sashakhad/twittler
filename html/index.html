@@ -112,11 +112,12 @@
         chooseUser(user);
         displayTweets(message);
       }
-      
+
       function sendVisitorTweet(){
         input = $('.draft').val();
         writeTweet(input);
         visitorTweets();
+        $('.draft').val("");
       }
       $(".send").click(sendVisitorTweet);
 
@@ -133,9 +134,13 @@
   </head>
   
   <body>
-    <!--Insert divs and stuff hereeee, but be sure to delete $body.html('') and figure out why blank div displays-->
-
-    <input class="draft" type="text"/> <button type = "submit" class="send">Send</button>
+    <div class = "tweetMaker">
+      <img class "profile" src="../images/ponybro.jpg" style="height:72px; width:72px">
+      <p class = "bro">Bro<br>@brodidles</p>
+     <span> <input class="draft" type="text" value ="Compose something chill, bro..."/> 
+      <button class="send" type = "submit">Send dat Tweet</button>
+     </span>
+    </div>
 
   </body>
 </html>

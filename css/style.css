@@ -6,9 +6,7 @@ html {
   background-size: cover;
 }
 
-
-
-div {
+div:not(.tweetMaker) {
 	background-color: white;
 	height: 60px;
 	width: 564px;
@@ -37,10 +35,79 @@ a:hover{
 	text-decoration: underline;
 }
 
+img:not(.profile) {
+	height:48px;
+	width: 48px;
+	border-radius: 15px;
+	display: inline-block;
+	overflow: auto;
+	float: left;
+	margin-left: 10px;
+	margin-top: 5px;
+}
+
+button{
+	color: red;
+	height: 30px;
+}
+
+.tweetMaker{
+	float: left; 
+	vertical-align: top;
+	position: fixed;
+	top: 9px;
+	left: 5px;
+	z-index: 999;
+	width: 400px;
+ 	height: 252px;
+	background-image: url(../images/bronies.jpg);
+	position: center;
+	display: block;
+	border: solid 3px; 
+	border-color: black;
+	border-radius: 5px;
+  	margin-right: auto ;
+}
+
+.draft{
+	width: 270px;
+	height: 23px;
+	margin-top: 140px;
+	margin-left: 120px;
+	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+	font-weight: bold;
+	border-radius: 5px;
+}
+
+.send{
+	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+	font-weight: bold;
+	margin-top: 5px;
+	margin-left: 3px;
+	border-radius: 5px;
+	float:left;
+	display: inline-block;
+}
+
+/* Why is .profile not selecting the appropriate image? Currently using inline styling on index.html to style this image */
+.profile{
+	width: 200px;
+	height: 332px;
+	border-color: white;
+	border: 2px;
+}
+
 .container{
 	background-color: black;
 	height: 100%;
 	width: 100%;
+}
+
+.bro{
+	margin-top: 8px;
+	margin-left: 8px;
+	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+	font-weight: bold;
 }
 
 .displayNames{
@@ -60,33 +127,6 @@ a:hover{
 	margin-top: 5px;
 }
 
-.dot{
-	margin-top: 2px;
-}
-
-img{
-	height:48px;
-	width: 48px;
-	border-radius: 15px;
-	display: inline-block;
-	overflow: auto;
-	float: left;
-	margin-left: 10px;
-	margin-top: 5px;
-
-
-}
-
-
-button{
-	color: red;
-	height: 30px;
-}
-.shawn{
-	font-style: helvetica;
-	font-size: 30px;
-}
-
 .messages{
 	display: inline-block;
 	vertical-align: middle;
@@ -95,7 +135,6 @@ button{
 	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif
 }
 
-.dates{
-	display: inline-block;
-	vertical-align: top
+.dot{
+	margin-top: 2px;
 }
