@@ -138,3 +138,8 @@ button{
 .dot{
 	margin-top: 2px;
 }
+
+.tags{
+	color: #0084B4;
+	text-decoration: underline;
+}

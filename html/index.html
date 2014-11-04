@@ -23,6 +23,7 @@
     var tweet = "";
     var sign = "";
     var input = "";
+    var tag = "";
     var displayNames = {
       shawn: "Shawn Drost",
       sharks: "Sharks FoR Cheap",
@@ -72,38 +73,51 @@
                       '<p class = "userNames">' + '@' + userName + '&nbsp' + '</p>' +
                       '<p class = "userNames"> · </p>' + '  ' + 
                       '<p class = "userNames">' + time + '</p>' + '<br/>' + '&nbsp' +
-                      '<p class = "messages">' + message + '</p>' +
+                      '<p class = "messages">' + message + '&nbsp' + '</p>' +
+                      '<a class = "tags">' + tag + '</a>' + 
                       '</div>');
 
+      };
+
+      function styleTags(message){
+        if(/(#)(\w+)/.exec(message) === null || undefined){
+          tag = "";
+        } else{
+          tag = /(#)(\w+)/.exec(message)[0];
+        }             
       };
 
       function updateTime(){
         time = moment().calendar();  
         setInterval(updateTime, 2000);
-      }
+      };
       updateTime();
 
       function initialTweets(){
-            index = streams.home.length - 1;
-            while(index >= 0){
-              tweet = streams.home[index];
-              message = tweet.message
-              user = tweet.user
-              chooseUser(user);
-              displayTweets(message);
-              index -= 1;
-            }
-        };
+        index = streams.home.length - 1;
+        while(index >= 0){
+          tweet = streams.home[index];
+          message = tweet.message
+          styleTags(message);
+          message = message.replace(/(#)(\w+)/, "");
+          user = tweet.user
+          chooseUser(user);
+          displayTweets(message);
+          index -= 1;
+        }
+      };
       initialTweets();
 
       function prependTweets(){
-              index = streams.home.length - 1;
-              tweet = streams.home[index];
-              message = tweet.message
-              user = tweet.user
-              chooseUser(user);
-              displayTweets(message);
-            }
+        index = streams.home.length - 1;
+        tweet = streams.home[index];
+        message = tweet.message
+        styleTags(message);
+        message = message.replace(/(#)(\w+)/, "");
+        user = tweet.user
+        chooseUser(user);
+        displayTweets(message);
+      }
 
       function visitorTweets(){
         index = streams.users.visitor.length - 1;
@@ -137,7 +151,7 @@
     <div class = "tweetMaker">
       <img class "profile" src="../images/ponybro.jpg" style="height:72px; width:72px">
       <p class = "bro">Bro<br>@brodidles</p>
-     <span> <input class="draft" type="text" value ="Compose something chill, bro..."/> 
+     <span> <input class="draft" type="text" placeholder ="Compose something chill, bro..."/> 
       <button class="send" type = "submit">Send dat Tweet</button>
      </span>
     </div>
